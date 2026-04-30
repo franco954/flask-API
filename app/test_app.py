@@ -26,3 +26,11 @@ def test_api_data(client):
     assert response.status_code == 200
     data = response.get_json()
     assert len(data['data']) == 2
+
+def test_not_found(client):
+    response = client.get('/api/notexist')
+    assert response.status_code == 404
+
+def test_invalid_endpoint(client):
+    response = client.get('/invalid')
+    assert response.status_code == 404
