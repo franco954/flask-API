@@ -36,6 +36,13 @@ jobs:
       run: |
         cd tests
         pytest test_app.py -v --cov=../app --cov-report=xml
+
+    # SONAR
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    
     
     # 5. Configurar credenciales de AWS
     - name: Configure AWS credentials
